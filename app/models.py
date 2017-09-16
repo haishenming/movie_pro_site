@@ -213,7 +213,7 @@ class Admin(db.Model):
     # 与管理员登录日志的外键关系
     adminlogs = db.relationship("AdminLog", backref="admin")
     # 与管理员操作日志的外键关系
-    oplogs = db.relationship("AdminLog", backref="admin")
+    oplogs = db.relationship("OpLog", backref="admin")
     # 添加时间
     addtime = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
@@ -243,11 +243,11 @@ class OpLog(db.Model):
     # 编号
     id = db.Column(db.Integer, primary_key=True)
     # 会员ID
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    admin_id = db.Column(db.Integer, db.ForeignKey("admin.id"))
     # 登录IP
     ip = db.Column(db.String(64))
     # 操作原因
-    reason = db.Column(db.String(600))
+    reason = db.Column(db.Text)
     # 登录时间
     addtime = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
@@ -256,10 +256,10 @@ class OpLog(db.Model):
 
 if __name__ == '__main__':
     # db.create_all()
-
+    #
     role = Role(
         name="超级管理员",
-        auth=""
+        auths=""
     )
-
+    db.session.add(role)
     db.session.commit()
