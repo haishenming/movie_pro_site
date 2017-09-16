@@ -81,3 +81,8 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/movie_pro_site.iml
+.idea/vcs.xml
